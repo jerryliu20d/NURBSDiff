@@ -132,11 +132,11 @@ __global__ void surf_cuda_forward_kernel(
   unsigned int k = blockIdx.z;
   unsigned int i = blockIdx.x * blockDim.x + threadIdx.x;
   unsigned int j = blockIdx.y * blockDim.y + threadIdx.y;
-  \\ std::printf("Hello from k %d, i %d, l %d\n", k,i,l);
+  // std::printf("Hello from k %d, i %d, l %d\n", k,i,l);
 
-  \\ std:: printf("This is block idx %d, block dimx %d, thread idx %d\n" ,blockIdx.x, blockDim.x, threadIdx.x);
+  // std:: printf("This is block idx %d, block dimx %d, thread idx %d\n" ,blockIdx.x, blockDim.x, threadIdx.x);
 
-  \\ std:: printf("This is k %d, i %d, j %d\n" , k , i,j);
+  // std:: printf("This is k %d, i %d, j %d\n" , k , i,j);
 
   if (i < u_size)
   {uspan[i]= find_span(m, p, u[i], U_ptr);
