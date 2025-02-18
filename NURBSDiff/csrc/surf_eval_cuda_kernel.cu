@@ -235,8 +235,16 @@ __global__ void surf_cuda_backward_kernel(
                           i, uspan[i], j, vspan[j], p, q, r, l);
                       printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
                           uspan[i] - p + r, vspan[j] - q + l, m, n);
+                    FILE *fp = fopen("C:/PhD/CNDE/NURBSDiff-master/report.txt", "a");
+                    if (fp != NULL) {
+                        fprintf(fp, "CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
+                                threadIdx.x, threadIdx.y, threadIdx.z);
+                        fprintf(fp, "uspan_uv[%d] = %d, vspan_uv[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
+                                i, uspan_uv[i], j, vspan_uv[j], p, q, r, l);
+                        fclose(fp);
+                    }
+
                   }
-                    cudaDeviceSynchronize();
               
               }
 
