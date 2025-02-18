@@ -225,7 +225,7 @@ __global__ void surf_cuda_backward_kernel(
 
               for (int r = 0; r <=p ; r++)
               { 
-                  if (uspan[i] - p + r >= 0 && uspan[i] - p + r < m &&
+                  if (uspan[i] - p + r >= -100000 && uspan[i] - p + r < m &&
                       vspan[j] - q + l >= 0 && vspan[j] - q + l < n) {
                       grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] = grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] + Nu[i][r] * grad_temp[l][d];
                   }else{
