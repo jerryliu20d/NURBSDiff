@@ -228,18 +228,18 @@ __global__ void surf_cuda_backward_kernel(
                   if (uspan[i] - p + r >= -100000 || uspan[i] - p + r < m ||
                       vspan[j] - q + l >= 0 || vspan[j] - q + l < n) {
                       grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] = grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] + Nu[i][r] * grad_temp[l][d];
-                      printf("CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
+                      std::printf("CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
                           threadIdx.x, threadIdx.y, threadIdx.z);
-                      printf("uspan[%d] = %d, vspan[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
+                      std::printf("uspan[%d] = %d, vspan[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
                           i, uspan[i], j, vspan[j], p, q, r, l);
-                      printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
+                      std::printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
                           uspan[i] - p + r, vspan[j] - q + l, m, n);
                   }else{
-                      printf("CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
+                      std::printf("CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
                           threadIdx.x, threadIdx.y, threadIdx.z);
-                      printf("uspan[%d] = %d, vspan[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
+                      std::printf("uspan[%d] = %d, vspan[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
                           i, uspan[i], j, vspan[j], p, q, r, l);
-                      printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
+                      std::printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
                           uspan[i] - p + r, vspan[j] - q + l, m, n);
                   }
               
