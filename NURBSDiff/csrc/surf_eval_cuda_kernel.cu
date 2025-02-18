@@ -236,6 +236,7 @@ __global__ void surf_cuda_backward_kernel(
                       printf("Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
                           uspan[i] - p + r, vspan[j] - q + l, m, n);
                   }
+                    cudaDeviceSynchronize()
               
               }
 
