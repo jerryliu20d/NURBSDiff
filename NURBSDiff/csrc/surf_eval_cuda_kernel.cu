@@ -37,8 +37,11 @@ return mid;
 __device__ __forceinline__ void basis_funs(int uspan_i, float u, int p, float* U, float* N, unsigned int i)
 { 
 
-  float *left  = new float [p+1];
-  float *right = new float [p+1];
+  //float *left  = new float [p+1];
+  //float *right = new float [p+1];
+  float left[p+1]
+  float right[p+1]
+
   float saved, temp;
   int col = p + 1;
   N[i*col] = 1.0;
@@ -57,8 +60,8 @@ __device__ __forceinline__ void basis_funs(int uspan_i, float u, int p, float* U
     }
     N[i*col+j] = saved;
   }
-    delete[] left;   // Free memory after use
-    delete[] right;  // Free memory after use
+    //delete[] left;   // Free memory after use
+    //delete[] right;  // Free memory after use
 }
 
 
