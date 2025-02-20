@@ -39,8 +39,8 @@ __device__ __forceinline__ void basis_funs(int uspan_i, float u, int p, float* U
 
   //float *left  = new float [p+1];
   //float *right = new float [p+1];
-  float left[p+1]
-  float right[p+1]
+  float left[p+1];
+  float right[p+1];
 
   float saved, temp;
   int col = p + 1;
