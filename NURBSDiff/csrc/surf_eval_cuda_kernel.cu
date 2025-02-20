@@ -57,7 +57,8 @@ __device__ __forceinline__ void basis_funs(int uspan_i, float u, int p, float* U
     }
     N[i*col+j] = saved;
   }
-
+    delete[] left;   // Free memory after use
+    delete[] right;  // Free memory after use
 }
 
 
@@ -226,21 +227,8 @@ __global__ void surf_cuda_backward_kernel(
 
               for (int r = 0; r <=p ; r++)
               { 
-                  if (uspan[i] - p + r >= 0 &&  uspan[i] - p + r < m &&
-                      vspan[j] - q + l >= 0 && vspan[j] - q + l < n) {
 
                       grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] = grad_ctrl_pts[k][uspan[i] - p + r][vspan[j] - q + l][d] + Nu[i][r] * grad_temp[l][d];
-                      FILE *fp = fopen("C:\\PhD\\CNDE\\NURBSDiff-master\\report.txt", "w");
-                      if (fp != NULL) {
-                          printf(fp,"CUDA WARNING: Index out of bounds at thread (%d, %d, %d)\n",
-                              threadIdx.x, threadIdx.y, threadIdx.z);
-                          printf(fp,"uspan[%d] = %d, vspan[%d] = %d, p = %d, q = %d, r = %d, l = %d\n",
-                              i, uspan[i], j, vspan[j], p, q, r, l);
-                          printf(fp,"Computed indices: [%d, %d] (should be within [0, %d] x [0, %d])\n",
-                              uspan[i] - p + r, vspan[j] - q + l, m, n);
-                      }
-                      fclose(fp)
-                  }
               
               }
 
